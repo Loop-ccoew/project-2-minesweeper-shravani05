@@ -1,0 +1,135 @@
+#include <iostream>
+
+using namespace std;
+
+class mine
+{
+    int r,c,i,j,t=13,a,m,d=0,u;
+    int mymine[4][4];
+public:
+    void fillminegrid()
+    {
+    cout<<"* * * * "<<endl;
+    cout<<"* * * * "<<endl;
+    cout<<"* * * * "<<endl;
+    cout<<"* * * * "<<endl;
+    for(i=0;i<=3;i++)
+    {
+        for(j=0;j<=3;j++)
+        {
+            mymine[i][j]=0;
+        }
+    }
+    mymine[1][2]= '+';
+    mymine[2][1]= '+';
+    mymine[3][3]= '+';
+    }
+    void besafefrommine()
+    {
+
+        do
+    {
+        if(d!=1)
+        {
+            for(m=1;m<=2;m++)
+                {
+                cout<<"PLAYER "<<m<<endl;
+                cout<<"Enter ROW NO."<<endl;
+                cin>>r;
+                if(r>4 || r<1)
+                {
+                    cout<<"INVALID INPUT"<<endl;
+                    cout<<"CHECK THE NUMBER OF ROWS AND COLUMNS OF GIVEN GRID"<<endl;
+                    break;
+                }
+                cout<<"Enter COLUMN NO."<<endl;
+                cin>>c;
+                if(c>4 || c<1)
+                {
+                    cout<<"INVALID INPUT"<<endl;
+                    cout<<"CHECK THE NUMBER OF ROWS AND COLUMNS OF THE GIVEN GRID"<<endl;
+                    break;
+                }
+                r--;
+                c--;
+
+                if(mymine[r][c]!=0)
+                {
+                    cout<<"GAME OVER FOR PLAYER "<<m<<endl;
+                    u = m;
+                    d = 1;
+                    break;
+                }
+                else
+                {
+                    cout<<"yeah you survived!"<<endl;
+                    t=t-1;
+                }
+                if(t==0)
+                {
+                    break;
+                }
+            }
+            }
+        else
+        {
+            if(u==1)
+            {
+                m=2;
+            }
+            else
+            {
+                m=1;
+            }
+            cout<<"PLAYER "<<m<<endl;
+            cout<<"Enter ROW NO."<<endl;
+            cin>>r;
+             if(r>4 || r<1)
+                {
+                    cout<<"INVALID INPUT"<<endl;
+                    cout<<"CHECK THE NUMBER OF ROWS AND COLUMNS OF GIVEN GRID"<<endl;
+                    break;
+                }
+            cout<<"Enter COLUMN NO."<<endl;
+            cin>>c;
+            if(c>4 || c<1)
+                {
+                    cout<<"INVALID INPUT"<<endl;
+                    cout<<"CHECK THE NUMBER OF ROWS AND COLUMNS OF THE GIVEN GRID"<<endl;
+                    break;
+                }
+            r--;
+            c--;
+            if(mymine[r][c]!=0)
+                {
+                    cout<<"GAME OVER"<<endl;
+                    break;
+                }
+
+            else
+                {
+                    cout<<"yeah you survived!"<<endl;
+                    t=t-1;
+                }
+                if(t==0)
+                {
+                    break;
+                }
+
+        }
+
+    }while(t!=0);
+    if(t==0)
+    {
+        cout<<"YOU WON"<<endl;
+    }
+    }
+
+};
+int main()
+{
+    mine mo;
+    mo.fillminegrid();
+    mo.besafefrommine();
+    return 0;
+}
